@@ -1,4 +1,5 @@
 import '../App.css';
+// The header of the application
 function Header() {
     return (
         <header className="my-header">

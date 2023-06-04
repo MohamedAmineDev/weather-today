@@ -1,6 +1,6 @@
 import '../App.css';
 // Will create a line for the table which contains all the data fetched from the api
-function Column({ attributeName, response, iconImg }) {
+function Row({ attributeName, response, iconImg }) {
     return (
         <tr class="border bg-blue-500">
             <th scope="row" class="p-5 font-medium text-gray-900 whitespace-nowrap dark:text-white text-xl"> {attributeName}
@@ -15,4 +15,4 @@ function Column({ attributeName, response, iconImg }) {
         </tr>
     );
 }
-export default Column;
+export default Row;

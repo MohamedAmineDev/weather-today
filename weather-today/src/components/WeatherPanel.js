@@ -1,7 +1,8 @@
 import Search from "./Search";
 import '../App.css';
 import React from "react";
-import Column from "./Column";
+import Row from "./Row";
+import WeatherReport from "./WeatherReport";
 // The component which contains the panel
 function WeatherPanel() {
     const beforeSearchingText = "No city was selected !";
@@ -19,7 +20,7 @@ function WeatherPanel() {
     const [found, setFound] = React.useState(false);
     const [icon, setIcon] = React.useState("");
     const sessionName = "last_search";
-    const loadingImage="https://media.tenor.com/whis5JX19ycAAAAC/loading-load.gif";
+    const loadingImage = "https://media.tenor.com/whis5JX19ycAAAAC/loading-load.gif";
     // Fetch data from the api
     function fetchData() {
         fetch(`${url}/${countryName}`)
@@ -95,38 +96,14 @@ function WeatherPanel() {
         <div className="my-weather-panel">
             <Search handleKeyword={getKeyWord} doSearch={doSearching} doLastSearch={doLastSearching} name={countryName} />
             <h2>{stringToDisplay}</h2>
-            {isloading?
-            <img src={loadingImage} className='loading' alt={stringToDisplay} />
-            :
-            <span></span>
+            {isloading ?
+                <img src={loadingImage} className='loading' alt={stringToDisplay} />
+                :
+                <span></span>
             }
             {found ? (<div>
 
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left text-gray-400 dark:text-gray-400 mb-20">
-                        <thead class="text-xs text-gray-500 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">
-                                    Information
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    value
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Attribute Icon
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <Column attributeName={`Temperature`} response={`${data.temperature}`} iconImg={`https://cdn-icons-png.flaticon.com/512/103/103945.png`} />
-                            <Column attributeName={`Wind`} response={`${data.wind}`} iconImg={`https://cdn-icons-png.flaticon.com/512/192/192756.png`} />
-                            <Column attributeName={`Description`} response={`${data.description}`} iconImg={`${icon}`} />
-
-                        </tbody>
-                    </table>
-                </div>
-
-
+                <WeatherReport information={data} imgIcon={icon} />
             </div>) : (<div>
 
             </div>)}
